@@ -10,17 +10,8 @@ class Reserva {
     }
 }
 
-let reservas = [] 
-
-
-//Creo el localStorage
-if (localStorage.getItem("reservas")){
-    reservas =  JSON.parse(localStorage.getItem("reservas")) 
-
-} else {
-    localStorage.setItem("reservas", JSON.stringify(reservas))
-}
-
+//Creo el localStorage con nullish
+const reservas = JSON.parse(localStorage.getItem("reservas")) ?? [] //si existe: consulto. sino existe: null - por el nullish, lo crea
 
 //Consulto el form y las mesas
 const form = document.getElementById("idForm")
@@ -53,37 +44,40 @@ form.addEventListener("submit", (e) =>{
     //actualizo mi localStorage pisandolo
     localStorage.setItem("reservas", JSON.stringify(reservas))
     
-    if(dataForm.get("mesa") === "1"){
-        mesa1.classList.add("noDisponible")
-    }
-    if(dataForm.get("mesa") === "2"){
-        mesa2.classList.add("noDisponible") 
-    }
-    if(dataForm.get("mesa") === "3"){
-        mesa3.classList.add("noDisponible") 
-    }
-    if(dataForm.get("mesa") === "4"){
-        mesa4.classList.add("noDisponible") 
-    }
-    if(dataForm.get("mesa") === "5"){
-        mesa5.classList.add("noDisponible") 
-    }
-    if(dataForm.get("mesa") === "6"){
-        mesa6.classList.add("noDisponible") 
-    }
-    if(dataForm.get("mesa") === "7"){
-        mesa7.classList.add("noDisponible") 
-    }
-    if(dataForm.get("mesa") === "8"){
-        mesa8.classList.add("noDisponible") 
-    }
-    if(dataForm.get("mesa") === "9"){
-        mesa9.classList.add("noDisponible") 
+    switch (dataForm.get("mesa")) {
+        case "1":
+            mesa1.classList.add("noDisponible")
+            break;
+        case "2":
+            mesa2.classList.add("noDisponible")
+            break;
+        case "3":
+            mesa3.classList.add("noDisponible")
+            break;
+        case "4":
+            mesa4.classList.add("noDisponible")
+            break;
+        case "5":
+            mesa5.classList.add("noDisponible")
+            break;
+        case "6":
+            mesa6.classList.add("noDisponible")
+            break;
+        case "7":
+            mesa7.classList.add("noDisponible")
+            break;
+        case "8":
+            mesa8.classList.add("noDisponible")
+            break;
+        case "9":
+            mesa9.classList.add("noDisponible")
+            break;    
+        default:
+            break;
     }
 
     //reseteo form
     form.reset() 
-
 })
 
 formButton.addEventListener("click", () =>{
